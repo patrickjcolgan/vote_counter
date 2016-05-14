@@ -67,35 +67,44 @@ var productRank = { //Tracker Object Literal
       }
       console.log(allProducts[0].tally);
       console.log(this.totalClicks);
-    }
-  };
-  productRank.imageEls.addEventListener('click', function(event){
-    event.preventDefault();
-    productRank.tallyClicks(event.target.id);
-    console.log(event.target.id); //get ID of target pass in to tallyClicks
-  } );
+    },
+
+    displayResults: function() {
+    var buttonResults = document.getElementById('showresults')
+    // buttonResults.hidden = false;
+
+    var ulEl = document.createElement('ul');//append all to ulEl, then append to sth in html
+      for (var i in allProducts) {
+        var liEl = document.createElement('li');
+        liEl.textContent = allProducts[i].name + ' has' + allProducts[i].tally + ' votes';
+        ulEl.appendChild('liEl');
+      }
+      var liElTwo = document.createElement('li');
+      liElTwo.textContent = 'Total clicks = ' + this.totalClicks;
+      ulEl.appendChild(liElTwo);
+
+      document.getElementById('results').appendChild(ulEl);
+      // buttonResults.appendChild(ulEl);
+    },
+    };
+      //TEMPORARY EVENT LISTENER TO TEST THINGS
+      productRank.imageEls.addEventListener('click', function(event) {
+        event.preventDefault();
+        productRank.tallyClicks(event.target.id);
+        console.log(event.target.id); //get ID of target pass in to tallyClicks
+      });
+
 //
-//     displayResults: function() { //renders the list of votes
-//       //THIS WILL BE A CHART FOR N14
-//       //CREATE 'UL'
-//       for ( var i in allPrducts){
-//         //VAR CREATE 'LI'
-//         //var str = allPrducts[i].name + ' has' + allPrducts[i].tally + ' votes';
-//         //str = str.charAt(0).toUppoercase() + str.slice(1);
-//         //li
-//
-//         //
-//       }
 //     },
 //
 //     showButton: function() { //when we hit 15 votes, show button; click view REsults show that button
-//       //  Hmm... what's going to happen here?
+//
 //       this.resultsButton.hidden = false;
 //       this.resultsButton.addEventListener('click', function(){
 //         //productRank.resetButton.hidden = false;
 //         //productRank.resultsButton.hidden = true;
-//
-//         //productRank.resetButton.addEventListener('click' function(){
+// //
+//         productRank.resetButton.addEventListener('click' function(){
 //         //jkljlkdjlkdj = true;
 //         location.reload();
 //       })
@@ -117,7 +126,7 @@ var productRank = { //Tracker Object Literal
 //     }
 //   };
 //
-  productRank.imageEls.addEventListener('click', productRank.onClick);
+  // productRank.imageEls.addEventListener('click', productRank.onClick);
 //   //imgEls property of img constructor. we have an event listener on all 3 images, put event listener on section/div
 //   //click anywhere in this section, but IF you click on this image, lets figure out which img object that is, and add a vote to it
 //
