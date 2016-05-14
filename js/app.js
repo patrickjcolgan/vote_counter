@@ -5,13 +5,14 @@ function Product(name, path) {//builds each img object creates ONE INSTANCE
   //both args are at the dirivitive YOUR RELATIVE PATH WILL BE THAT IMG OBJECT WHERE THAT PATH IS APPLIED
   this.name = name;
   this.path = path;
+  this.tally = 0;
   allProducts.push(this);
 };
 //iffe that runs a for loop. iterate over productNames array, pushes to Products, adds to allProducts array
 (function buildAlbum() {
   for (var i = 0; i < productNames.length; i++) {
     new Product(productNames[i], 'img/' + productNames[i] + '.jpg');//populates Product parameters
-    console.log(productNames[i]);
+    // console.log(productNames[i]);
     // console.log(path);
   }
 })();
@@ -31,7 +32,7 @@ var productRank = { //Tracker Object Literal
   resultsButton: document.getElementById('showresults'),
   resetButton: document.getElementById('reset'),
 
-    getRandomIndex: function() { //from allProducts INCLUSIVE get number value to use in allProductsarray
+    getRandomIndex: function() { //from allProducts INCLUSIVE get number value to use in allProducts array
       return Math.floor(Math.random() * productNames.length);
     },
 
@@ -52,21 +53,29 @@ var productRank = { //Tracker Object Literal
         productRank.midEl.src = productRank.midObj.path;
         productRank.midEl.id = productRank.midObj.name;
 
-        productRank.rightEl.src = productRank.leftObj.path;
-        productRank.rightEl.id = productRank.leftObj.name;
+        productRank.rightEl.src = productRank.rightObj.path;
+        productRank.rightEl.id = productRank.rightObj.name;
     },
-  };
 
-//     tallyClicks: function(elId) { // when I click, add a vote to that img
-//       //  Hmm... what's going to happen here? USE THE ID OF THE IMG WE CLICKED
-//       for (var i in allPrducts){ //USING THIS represents productRank
-//         if (//the name = the id allProducts[i].name == elId){
-//           // allPrducts[i].tally....
-//       }
-//     },
+    tallyClicks: function(elId) { // when I click, add a vote to that img
+      // USE THE ID OF THE IMG WE CLICKED
+      for (var i in allProducts) {
+        if (elId === allProducts[i].name) {
+        allProducts[i].tally ++;
+        this.totalClicks ++;
+      }
+      }
+      console.log(allProducts[0].tally);
+      console.log(this.totalClicks);
+    }
+  };
+  productRank.imageEls.addEventListener('click', function(event){
+    event.preventDefault();
+    productRank.tallyClicks(event.target.id);
+    console.log(event.target.id); //get ID of target pass in to tallyClicks
+  } );
 //
 //     displayResults: function() { //renders the list of votes
-//       // Hmm... what's going to happen here?
 //       //THIS WILL BE A CHART FOR N14
 //       //CREATE 'UL'
 //       for ( var i in allPrducts){
@@ -108,7 +117,7 @@ var productRank = { //Tracker Object Literal
 //     }
 //   };
 //
-//   productRank.imageEls.addEventListener('click', productRank.onClick);
+  productRank.imageEls.addEventListener('click', productRank.onClick);
 //   //imgEls property of img constructor. we have an event listener on all 3 images, put event listener on section/div
 //   //click anywhere in this section, but IF you click on this image, lets figure out which img object that is, and add a vote to it
 //

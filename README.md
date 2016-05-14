@@ -23,3 +23,7 @@ HTML Framework
     // this.votes = ?
     allProducts.push(this);
   };
++ displayImages: function()
+  + displays three random images
+  + no repeating images (if statement)
+  + update .src and .id

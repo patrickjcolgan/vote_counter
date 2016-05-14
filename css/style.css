@@ -1,2 +1,6 @@
 /*//column count 3
 max height: 300px*/
+.vote {
+  /*display: inline;*/
+  width: 20px;
+}
