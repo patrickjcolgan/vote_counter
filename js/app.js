@@ -12,13 +12,11 @@ function Product(name, path) {//builds each img object creates ONE INSTANCE
 (function buildAlbum() {
   for (var i = 0; i < productNames.length; i++) {
     new Product(productNames[i], 'img/' + productNames[i] + '.jpg');//populates Product parameters
-    // console.log(productNames[i]);
-    // console.log(path);
   }
 })();
 
 var productRank = { //Tracker Object Literal
-  //use .src = productRank.imageONE.id
+
   totalClicks: 0,
   leftObj: null,
   midObj: null,
@@ -32,7 +30,7 @@ var productRank = { //Tracker Object Literal
   resultsButton: document.getElementById('showResults'),
   resetButton: document.getElementById('reset'),
 
-    getRandomIndex: function() { //from allProducts INCLUSIVE get number value to use in allProducts array
+    getRandomIndex: function() { //from allProducts INCLUSIVE ZERO get number value to use in allProducts array
       return Math.floor(Math.random() * productNames.length);
     },
 
@@ -70,26 +68,23 @@ var productRank = { //Tracker Object Literal
     },
 
     displayResults: function() {
-    // buttonResults.hidden = false;
-    var sectionEl = document.getElementById('results');
-    sectionEl.textContent = 'Here are your voting results';
-    var ulEl = document.createElement('ul');
-    sectionEl.appendChild(ulEl);
 
-      for (var i in allProducts) {
-        var liElOne = document.createElement('li');
-        liElOne.textContent = allProducts[i].name + ' has ' + allProducts[i].tally + ' votes';
-        ulEl.appendChild(liElOne);
-      }
-      var liElTotal = document.createElement('li');
-      liElTotal.textContent = 'Total clicks = ' + this.totalClicks;
-      ulEl.appendChild(liElTotal);
-      // document.getElementById('results').appendChild(ulEl);
-      // buttonResults.appendChild(ulEl);
+      var sectionEl = document.getElementById('results');
+      sectionEl.textContent = 'Here are your voting results';
+      var ulEl = document.createElement('ul');
+      sectionEl.appendChild(ulEl);
+
+        for (var i in allProducts) {
+          var liElOne = document.createElement('li');
+          liElOne.textContent = allProducts[i].name + ' has ' + allProducts[i].tally + ' votes';
+          ulEl.appendChild(liElOne);
+        }
+        var liElTotal = document.createElement('li');
+        liElTotal.textContent = 'Total clicks = ' + this.totalClicks;
+        ulEl.appendChild(liElTotal);
     },
 
-    showButton: function() { //when we hit 15 votes, show button; click view REsults show that button
-      // var resultsButton = document.getElementById('showresults') //dont need. already in constructor
+    showButton: function() { //at 15 votes, show button; click view Results; show RESET button
 
       this.resultsButton.hidden = false;
       this.resultsButton.addEventListener('click', function() {
@@ -105,11 +100,12 @@ var productRank = { //Tracker Object Literal
     },
 
     onClick: function() {
-
+      //IF you click on img's section, figure out which img
       if (event.target.id === productRank.leftObj.name || event.target.id === productRank.midObj.name || event.target.id === productRank.rightObj.name) {
           productRank.tallyClicks(event.target.id);
 
           if (productRank.totalClicks % 15 === 0) {
+              //Put listener on section containing the images
               productRank.imageEls.removeEventListener('click', productRank.onClick);
               productRank.showButton();
           }
@@ -120,15 +116,8 @@ var productRank = { //Tracker Object Literal
       }
     }
   };
+//Listener is on section containing the images.
 productRank.imageEls.addEventListener('click', productRank.onClick);
 productRank.displayImages();//will give us first 3 images on page load.
-//   //imgEls property of img constructor. we have an event listener on all 3 images, put event listener on section/div
+
 //   //click anywhere in this section, but IF you click on this image, lets figure out which img object that is, and add a vote to it
-//
-// }
-//TEMPORARY EVENT LISTENER TO TEST THINGS
-// productRank.imageEls.addEventListener('click', function(event) {
-//   event.preventDefault();
-//   productRank.tallyClicks(event.target.id);
-//   console.log(event.target.id); //get ID of target pass in to tallyClicks
-// });
