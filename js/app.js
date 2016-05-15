@@ -70,20 +70,22 @@ var productRank = { //Tracker Object Literal
     },
 
     displayResults: function() {
-    var buttonResults = document.getElementById('showresults')
-    // buttonResults.hidden = false;
+    // var buttonResults = document.getElementById('showresults')
+    // // buttonResults.hidden = false;
+    var sectionEl = document.getElementById('results');
+    sectionEl.textContent = 'Here are your voting results';
+    var ulEl = document.createElement('ul');
+    sectionEl.appendChild(ulEl);
 
-    var ulEl = document.createElement('ul');//append all to ulEl, then append to sth in html
       for (var i in allProducts) {
-        var liEl = document.createElement('li');
-        liEl.textContent = allProducts[i].name + ' has' + allProducts[i].tally + ' votes';
-        ulEl.appendChild('liEl');
+        var liElOne = document.createElement('li');
+        liElOne.textContent = allProducts[i].name + ' has ' + allProducts[i].tally + ' votes';
+        ulEl.appendChild(liElOne);
       }
-      var liElTwo = document.createElement('li');
-      liElTwo.textContent = 'Total clicks = ' + this.totalClicks;
-      ulEl.appendChild(liElTwo);
-
-      document.getElementById('results').appendChild(ulEl);
+      var liElTotal = document.createElement('li');
+      liElTotal.textContent = 'Total clicks = ' + this.totalClicks;
+      ulEl.appendChild(liElTotal);
+      // document.getElementById('results').appendChild(ulEl);
       // buttonResults.appendChild(ulEl);
     },
     };
