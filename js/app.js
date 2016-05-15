@@ -29,7 +29,7 @@ var productRank = { //Tracker Object Literal
   rightEl: document.getElementById('imgThree'),
   imageEls: document.getElementById('images'), //section that holds each img element
   resultsEl: document.getElementById('results'), //after buttons: display RESULTS in 'li'
-  resultsButton: document.getElementById('showresults'),
+  resultsButton: document.getElementById('showResults'),
   resetButton: document.getElementById('reset'),
 
     getRandomIndex: function() { //from allProducts INCLUSIVE get number value to use in allProducts array
@@ -70,8 +70,7 @@ var productRank = { //Tracker Object Literal
     },
 
     displayResults: function() {
-    // var buttonResults = document.getElementById('showresults')
-    // // buttonResults.hidden = false;
+    // buttonResults.hidden = false;
     var sectionEl = document.getElementById('results');
     sectionEl.textContent = 'Here are your voting results';
     var ulEl = document.createElement('ul');
@@ -88,49 +87,48 @@ var productRank = { //Tracker Object Literal
       // document.getElementById('results').appendChild(ulEl);
       // buttonResults.appendChild(ulEl);
     },
-    };
-      //TEMPORARY EVENT LISTENER TO TEST THINGS
-      productRank.imageEls.addEventListener('click', function(event) {
-        event.preventDefault();
-        productRank.tallyClicks(event.target.id);
-        console.log(event.target.id); //get ID of target pass in to tallyClicks
-      });
 
-//
-//     },
-//
-//     showButton: function() { //when we hit 15 votes, show button; click view REsults show that button
-//
-//       this.resultsButton.hidden = false;
-//       this.resultsButton.addEventListener('click', function(){
-//         //productRank.resetButton.hidden = false;
-//         //productRank.resultsButton.hidden = true;
-// //
-//         productRank.resetButton.addEventListener('click' function(){
-//         //jkljlkdjlkdj = true;
-//         location.reload();
-//       })
-//       })
-//     },
-//
-//     onClick: function() {
-//       //  Hmm... what's going to happen here?
-//       if (event.target.id === productRank.leftObj.name || ){
-//       //productRank.tallyClicks(event.target.id);
-// }
-//       if (productRank.totalClicks % 15 === 0){
-//         //removeeventllistener
-//         //show button
-//       }
-//       //productRank.displayImages();
-//       //Else {
-//       //ALERT('CLICK THE IMAGE');
-//     }
-//   };
-//
-  // productRank.imageEls.addEventListener('click', productRank.onClick);
+    showButton: function() { //when we hit 15 votes, show button; click view REsults show that button
+      // var resultsButton = document.getElementById('showresults') //dont need. already in constructor
+
+      this.resultsButton.hidden = false;
+      this.resultsButton.addEventListener('click', function() {
+        productRank.resetButton.hidden = false;
+        productRank.resultsButton.hidden = true;
+        productRank.displayResults();
+
+        productRank.resetButton.addEventListener('click', function() {
+        productRank.resetButton.hidden = true;
+        location.reload();
+        })
+      });
+    },
+
+    onClick: function() {
+
+      if (event.target.id === productRank.leftObj.name || event.target.id === productRank.midObj.name || event.target.id === productRank.rightObj.name) {
+          productRank.tallyClicks(event.target.id);
+
+          if (productRank.totalClicks % 15 === 0) {
+              productRank.imageEls.removeEventListener('click', productRank.onClick);
+              productRank.showButton();
+          }
+
+      productRank.displayImages();
+      } else {
+        alert('CLICK THE IMAGE');
+      }
+    }
+  };
+productRank.imageEls.addEventListener('click', productRank.onClick);
+productRank.displayImages();//will give us first 3 images on page load.
 //   //imgEls property of img constructor. we have an event listener on all 3 images, put event listener on section/div
 //   //click anywhere in this section, but IF you click on this image, lets figure out which img object that is, and add a vote to it
 //
-  productRank.displayImages();//will give us first 3 images on page load.
 // }
+//TEMPORARY EVENT LISTENER TO TEST THINGS
+// productRank.imageEls.addEventListener('click', function(event) {
+//   event.preventDefault();
+//   productRank.tallyClicks(event.target.id);
+//   console.log(event.target.id); //get ID of target pass in to tallyClicks
+// });
