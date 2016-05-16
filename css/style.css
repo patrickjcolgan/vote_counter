@@ -1,30 +1,42 @@
-/*//column count 3
-max height: 300px*/
-/*body {
-  width: 960px;
-}*/
+/**********Color Palette:
+1. #E9DC19 / RGB: 233, 220, 35 / HSV: 56, 89, 91
+2. #55093D / RGB: 85, 9, 61    / HSV: 319, 89, 33
+********** Color Palette*/
+
+* {
+  font-family: 'EB Garamond', serif;
+  background: linear-gradient(to bottom right, red, yellow);
+}
 
 header, h1 {
   text-align: center;
 }
+
 .container {
-  max-width: 960px;
   text-align: center;
-  clear: both;
+  /*width: 1300px;*/
+  max-width: 1300px;
 }
+
 .vote {
-  /*display: inline;*/
-  float: left;
+  display: inline;
   height: 200px;
   width: 200px;
   padding: 15px;
   border-style: solid;
-}
-.buttons {
-  clear: both;
+  margin: 10px;
 }
 
+
+.buttons {
+  /*clear: both;*/
+  margin-left: 45px;
+  margin-bottom: 30px;
+}
+
+
 .list {
+  margin-left: 45px;
   clear: both;
   columns: 3;
 }
