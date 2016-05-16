@@ -27,3 +27,11 @@ HTML Framework
   + displays three random images
   + no repeating images (if statement)
   + update .src and .id
+
++ First button is no longer hidden after Event Listener
+
+### CSS
++ Includes normalize.css
++ Google Font: font-family: 'EB Garamond', serif;
++ Used a linear-gradient for background
++ Using a max-width of 1300px because using 960px was too small

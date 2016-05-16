@@ -1,11 +1,11 @@
 /**********Color Palette:
-1. #E9DC19 / RGB: 233, 220, 35 / HSV: 56, 89, 91
-2. #55093D / RGB: 85, 9, 61    / HSV: 319, 89, 33
+1. #FDF2FE / RGB: 233, 220, 35 / HSV: 56, 89, 91
+2. #E056F3 / RGB: 85, 9, 61    / HSV: 319, 89, 33
 ********** Color Palette*/
 
-* {
+html {
   font-family: 'EB Garamond', serif;
-  background: linear-gradient(to bottom right, red, yellow);
+  background: linear-gradient(to bottom right, #E056F3, #FDF2FE);
 }
 
 header, h1 {
@@ -20,8 +20,8 @@ header, h1 {
 
 .vote {
   display: inline;
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
   padding: 15px;
   border-style: solid;
   margin: 10px;
