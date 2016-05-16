@@ -10,6 +10,7 @@ html {
 
 header, h1 {
   text-align: center;
+  max-width: 1300px;
 }
 
 .container {
@@ -20,8 +21,8 @@ header, h1 {
 
 .vote {
   display: inline;
-  height: 150px;
-  width: 150px;
+  height: 200px;
+  width: 200px;
   padding: 15px;
   border-style: solid;
   margin: 10px;
