@@ -2,16 +2,15 @@ var allProducts = [];
 var productNames = ['bag', 'banana', 'boots', 'chair', 'cthulhu', 'dragon', 'pen', 'scissors', 'shark', 'sweep', 'unicorn', 'usb', 'water_can', 'wine_glass'];
 
 var data = {
-	labels: productNames,
-	datasets: [
-    {
-			label: 'label of dataset',
-			backgroundColor: 'rgba(233,220,35,0.5)',
-			data: []
-    },
-  ]
-};
-
+			labels: productNames,
+			datasets: [
+				{
+					label: 'Votes per Product',
+					backgroundColor: 'rgba(233, 220, 35, 0.5)',
+					data: []
+				}
+			]
+		};
 
 function Product(name, path) {//builds each img object creates ONE INSTANCE
   //both args are at the dirivitive YOUR RELATIVE PATH WILL BE THAT IMG OBJECT WHERE THAT PATH IS APPLIED
@@ -73,35 +72,19 @@ var productRank = { //Tracker Object Literal
       for (var i in allProducts) {
         if (elId === allProducts[i].name) {
         allProducts[i].tally ++;
-        data.datasets[0].data[name] = allProducts[name];// or +=1 on left side of =
+        data.datasets[0].data[i] = allProducts[i].tally;// or +=1
         this.totalClicks ++;
       }
       }
-      console.log(allProducts[0].tally);
-      console.log(this.totalClicks);
     },
 
     displayResults: function() {
 
-      // var sectionEl = document.getElementById('results');
-      // sectionEl.textContent = 'Here are your voting results';
-      // var ulEl = document.createElement('ul');
-      // sectionEl.appendChild(ulEl);
-      //
-      //   for (var i in allProducts) {
-      //     var liElOne = document.createElement('li');
-      //     liElOne.textContent = allProducts[i].name + ' has ' + allProducts[i].tally + ' votes';
-      //     ulEl.appendChild(liElOne);
-      //   }
-      //   var liElTotal = document.createElement('li');
-      //   liElTotal.textContent = 'Total clicks = ' + this.totalClicks;
-      //   ulEl.appendChild(liElTotal);
-
-        var ctx = document.getElementById('mychart').getContext('2d');
+        var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
 					type: 'bar',
 					data: data,
-          });
+				});
       },
 
     showButton: function() { //at 15 votes, show button; click view Results; show RESET button
@@ -139,5 +122,3 @@ var productRank = { //Tracker Object Literal
 //Listener is on section containing the images.
 productRank.imageEls.addEventListener('click', productRank.onClick);
 productRank.displayImages();//will give us first 3 images on page load.
-
-//   //click anywhere in this section, but IF you click on this image, lets figure out which img object that is, and add a vote to it
