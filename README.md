@@ -62,3 +62,17 @@ HTML Framework
 					data: data,
 				});
       },
+
+## N15: localStorage
+In order to convert data in localStorage to a string, then Parse it back out, the following code was added to tallyClicks function
+
++ var storage = JSON.stringify(allProducts);
+  + stringifies data in allProducts array and stores in variable named storage
+
++ localStorage.setItem('votes', storage);
+  + in localStorage, the storage variable is given the string value of 'votes'
+
++ var storedVotes = localStorage.getItem('votes');
+  + Retrieves string value
++ storedVotes = JSON.parse(storedVotes);
+  + parse string value back to "regular" values 
