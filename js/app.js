@@ -74,6 +74,15 @@ var productRank = { //Tracker Object Literal
         allProducts[i].tally ++;
         data.datasets[0].data[i] = allProducts[i].tally;// or +=1
         this.totalClicks ++;
+
+				var storage = JSON.stringify(allProducts);
+					console.log(typeof(storage));
+
+				localStorage.setItem('votes', storage);
+
+				var storedVotes = localStorage.getItem('votes');
+				storedVotes = JSON.parse(storedVotes);
+					console.log(typeof(storedVotes));
       }
       }
     },
@@ -117,6 +126,7 @@ var productRank = { //Tracker Object Literal
       } else {
         alert('CLICK THE IMAGE');
       }
+
     }
   };
 //Listener is on section containing the images.
